@@ -19,7 +19,7 @@
 	RootModule = 'PSCommonCore.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '0.0.0.1'
+	ModuleVersion = '0.0.0.2'
 	
 	# ID used to uniquely identify this module
 	GUID = 'e4f454b9-6a2b-4808-ae03-5774e3df9465'
