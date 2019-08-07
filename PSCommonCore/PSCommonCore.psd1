@@ -19,7 +19,7 @@
 	RootModule = 'PSCommonCore.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '0.0.0.2'
+	ModuleVersion = '0.0.0.3'
 	
 	# ID used to uniquely identify this module
 	GUID = 'e4f454b9-6a2b-4808-ae03-5774e3df9465'
@@ -34,7 +34,7 @@
 	Copyright = '(c) 2019. All rights reserved.'
 	
 	# Description of the functionality provided by this module
-	Description = 'Core Functions use by my scripts'
+	Description = 'Core Functions used by my scripts'
 	
 	# Minimum version of the Windows PowerShell engine required by this module
 	PowerShellVersion = '3.0'

@@ -14,7 +14,7 @@
 
 
 
-Function Validate-Module
+Function Test-Module
 {
 	param
 	(
@@ -448,5 +448,226 @@ Function Close-Log
 	}
 	
 	
+}
+
+function Scramble-String([string]$inputString)
+{
+	$characterArray = $inputString.ToCharArray()
+	$scrambledStringArray = $characterArray | Get-Random -Count $characterArray.Length
+	$outputString = -join $scrambledStringArray
+	return $outputString
+}
+
+function Get-RandomCharacters($length, $characters)
+{
+	$random = 1 .. $length | ForEach-Object { Get-Random -Maximum $characters.length }
+	$private:ofs = ""
+	return [String]$characters[$random]
+}
+
+function create-password
+{
+	param
+	(
+		[parameter(Mandatory = $true)]
+		[int]$Length,
+		[parameter(Mandatory = $false)]
+		[switch]$Upper = $false,
+		[parameter(Mandatory = $false)]
+		[switch]$Lower = $false,
+		[parameter(Mandatory = $false)]
+		[switch]$Number = $false,
+		[parameter(Mandatory = $false)]
+		[switch]$Symbol = $false,
+		[parameter(Mandatory = $false)]
+		[int]$MinLower = 1,
+		[parameter(Mandatory = $false)]
+		[int]$MinUpper = 1,
+		[parameter(Mandatory = $false)]
+		[int]$MinNumber = 1,
+		[parameter(Mandatory = $false)]
+		[int]$MinSymbol = 1,
+		[parameter(Mandatory = $false)]
+		[switch]$NonAmbiguous = $false
+	)
+	# Fix password length if minchars is more than length
+	$BaseCount = 1
+	if ($Upper)
+	{
+		$BaseCount += $MinUpper
+	}
+	if ($Lower)
+	{
+		$BaseCount += $MinLower
+	}
+	if ($Number)
+	{
+		$BaseCount += $MinNumber
+	}
+	if ($Symbol)
+	{
+		$BaseCount += $MinSymbol
+	}
+	if ($BaseCount -gt $Length)
+	{
+		$Length = $BaseCount
+	}
+	$remaining = $Length - $BaseCount
+	
+	# Creates character arrays for the different character classes, based on ASCII character values.
+	[string]$charsLower = (97 .. 122 | %{ [Char]$_ })
+	$charsLower = $charsLower -replace " ", ""
+	[string]$charsUpper = (65 .. 90 | %{ [Char]$_ })
+	$charsUpper = $charsUpper -replace " ", ""
+	[string]$charsNumber = (48 .. 57 | %{ [Char]$_ })
+	$charsNumber = $charsNumber -replace " ", ""
+	[string]$charsSymbol = (35, 36, 40, 41, 42, 44, 45, 46, 47, 58, 59, 63, 64, 92, 95 | %{ [Char]$_ })
+	$charsSymbol = $charsSymbol -replace " ", ""
+	
+	# Create character arrays for non ambiguous characters l (ell), 1 (one), I (capital i), O (capital o), 0 (zero), B (capital b), 8 (eight), q (queue), g (gee), | (pipe)
+	[string]$charsLowera = "abcdefhijkmnoprstuvwxyz"
+	$charsLowera = $charsLowera -replace " ", ""
+	[string]$charsUppera = "ACDEFGHJKLMNPQRTUVWXYZ"
+	$charsUppera = $charsUppera -replace " ", ""
+	[string]$charsNumbera = "234679"
+	$charsNumbera = $charsNumbera -replace " ", ""
+	[string]$charsSymbola = "!@#$%^&*()-=+:,?_.~"
+	$charsSymbola = $charsSymbola -replace " ", ""
+	
+	
+	if ($NonAmbiguous -eq $false)
+	{
+		if ($Upper)
+		{
+			$RandomUString = Get-RandomCharacters -length $MinUpper -characters $charsUpper
+		}
+		else
+		{
+			$RandomUString = ""
+		}
+		if ($Lower)
+		{
+			$RandomLString = Get-RandomCharacters -length $MinLower -characters $charsLower
+		}
+		else
+		{
+			$RandomLString = ""
+		}
+		if ($Number)
+		{
+			$RandomNString = Get-RandomCharacters -length $MinNumber -characters $charsNumber
+		}
+		else
+		{
+			$RandomNString = ""
+		}
+		if ($Symbol)
+		{
+			$RandomSString = Get-RandomCharacters -length $MinSymbol -characters $charsSymbol
+		}
+		else
+		{
+			$RandomSString = ""
+		}
+		
+		
+		
+		if ($remaining -gt 0)
+		{
+			$Tempc = ""
+			if ($Upper)
+			{
+				$Tempc += $charsUpper
+			}
+			if ($Lower)
+			{
+				$Tempc += $charsLower
+			}
+			if ($Number)
+			{
+				$Tempc += $charsNumber
+			}
+			if ($Symbol)
+			{
+				$Tempc += $charsSymbol
+			}
+			$RandomString = Get-RandomCharacters -length $remaining -characters $Tempc
+		}
+		else
+		{
+			$RandomString = ""
+		}
+	}
+	else
+	{
+		if ($Upper)
+		{
+			$RandomUString = Get-RandomCharacters -length $MinUpper -characters $charsUppera
+		}
+		else
+		{
+			$RandomUString = ""
+		}
+		if ($Lower)
+		{
+			$RandomLString = Get-RandomCharacters -length $MinLower -characters $charsLowera
+		}
+		else
+		{
+			$RandomLString = ""
+		}
+		if ($Number)
+		{
+			$RandomNString = Get-RandomCharacters -length $MinNumber -characters $charsNumbera
+		}
+		else
+		{
+			$RandomNString = ""
+		}
+		if ($Symbol)
+		{
+			$RandomSString = Get-RandomCharacters -length $MinSymbol -characters $charsSymbola
+		}
+		else
+		{
+			$RandomSString = ""
+		}
+		if ($remaining -gt 0)
+		{
+			$Tempc = ""
+			if ($Upper)
+			{
+				$Tempc += $charsUppera
+			}
+			if ($Lower)
+			{
+				$Tempc += $charsLowera
+			}
+			if ($Number)
+			{
+				$Tempc += $charsNumbera
+			}
+			if ($Symbol)
+			{
+				$Tempc += $charsSymbola
+			}
+			$RandomString = Get-RandomCharacters -length $remaining -characters $Tempc
+		}
+		else
+		{
+			$RandomString = ""
+		}
+	}
+	
+	#combine all into a single string
+	$Return = $RandomUString + $RandomLString + $RandomNString + $RandomSString + $RandomString
+	
+	#scramble the scring
+	$Return = Scramble-String -inputString $Return
+	
+	return $Return
+	
+	
+
 }
 
