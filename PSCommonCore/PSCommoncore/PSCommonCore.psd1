@@ -18,8 +18,8 @@
 	# Script module or binary module file associated with this manifest
 	RootModule = 'PSCommonCore.psm1'
 	
-	# Version number of this module.
-	ModuleVersion = '1.0.0.0'
+	# Version number of this module. format "major Version"."minor Version"."Build day/month"."Build min/hour"
+	ModuleVersion = '1.1.0408.1712'
 	
 	# ID used to uniquely identify this module
 	GUID = 'e4f454b9-6a2b-4808-ae03-5774e3df9465'
@@ -31,13 +31,13 @@
 	CompanyName = 'Quest'
 	
 	# Copyright statement for this module
-	Copyright = '(c) 2019. All rights reserved.'
+	Copyright = '(c) 2022. All rights reserved.'
 	
 	# Description of the functionality provided by this module
-	Description = 'Module description'
+	Description = 'Core Functions used by my scripts'
 	
 	# Minimum version of the Windows PowerShell engine required by this module
-	PowerShellVersion = '3.0'
+	PowerShellVersion = '5.0'
 	
 	# Name of the Windows PowerShell host required by this module
 	PowerShellHostName = ''
@@ -76,7 +76,30 @@
 	NestedModules = @()
 	
 	# Functions to export from this module
-	FunctionsToExport = '*' #For performance, list functions explicitly
+	FunctionsToExport = @(
+		'Measure-IOPS',
+		'Test-Module',
+		'Test-PSVersion',
+		'Write-Color',
+		'Start-Log',
+		'Write-Log',
+		'Close-Log',
+		'New-RandomString',
+		'Get-RandomCharacters',
+		'New-password',
+		'get-loggedonuser',
+		'Test-Powershell',
+		'Test-PsRemoting',
+		'get-pagefilelocation',
+		'convertto-e164',
+		'create-key',
+		'encrypt-data',
+		'decrypt-data',
+		'convertto-nicexml',
+		'generate-machinekey',
+		'get-serviceinfo',
+		'Sign-Script'
+	) #For performance, list functions explicitly
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = '*' 

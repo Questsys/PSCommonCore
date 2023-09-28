@@ -1,0 +1,12 @@
+﻿<HelpProject>
+  <Version>1.0</Version>
+  <FileID>41e619c4-e8a6-4bbc-8657-34d510be32c2</FileID>
+  <Folders>
+    <Folder>en-US</Folder>
+  </Folders>
+  <Files>
+    <File>en-US\about_PSCommonCore.Help.txt</File>
+    <File>en-US\PSCommonCore.psm1-Help.xml</File>
+  </Files>
+  <SourceModule name="PSCommonCore" path="C:\Users\b_mag\OneDrive\Documents\GitHub\PSCommonCore\PSCommonCore\Deploy\PSCommonCore.psd1" version="1.0.1502.3304" backup="1.0.1502.3304" refreshmode="1" deployed="132954727882241433" />
+</HelpProject>
