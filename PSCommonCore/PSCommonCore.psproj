@@ -7,7 +7,7 @@
   <Folders />
   <Files>
     <File Build="2">PSCommonCore.psd1</File>
-    <File Build="0" ExportFunctions="True">PSCommonCore.psm1</File>
+    <File Build="0" Shared="True" ExportFunctions="True">PSCommonCore.psm1</File>
     <File Build="1" Shared="False" ReferenceFunction="Invoke-Test-Module_ps1" ExportFunctions="False">Test-Module.ps1</File>
     <File Build="2">PSCommonCore.psm1-Help.xml</File>
   </Files>

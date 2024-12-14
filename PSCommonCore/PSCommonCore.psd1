@@ -19,7 +19,7 @@
 	RootModule = 'PSCommonCore.psm1'
 	
 	# Version number of this module. format "major Version"."minor Version"."Build day/month"."Build min/hour"
-	ModuleVersion = '1.1.0408.1712'
+	ModuleVersion = '1.2.1212.1100'
 	
 	# ID used to uniquely identify this module
 	GUID = 'e4f454b9-6a2b-4808-ae03-5774e3df9465'
@@ -76,30 +76,8 @@
 	NestedModules = @()
 	
 	# Functions to export from this module
-	FunctionsToExport = @(
-		'Measure-IOPS',
-		'Test-Module',
-		'Test-PSVersion',
-		'Write-Color',
-		'Start-Log',
-		'Write-Log',
-		'Close-Log',
-		'New-RandomString',
-		'Get-RandomCharacters',
-		'New-password',
-		'get-loggedonuser',
-		'Test-Powershell',
-		'Test-PsRemoting',
-		'get-pagefilelocation',
-		'convertto-e164',
-		'create-key',
-		'encrypt-data',
-		'decrypt-data',
-		'convertto-nicexml',
-		'generate-machinekey',
-		'get-serviceinfo',
-		'Sign-Script'
-	) #For performance, list functions explicitly
+	FunctionsToExport = "*"
+	#For performance, list functions explicitly
 	
 	# Cmdlets to export from this module
 	CmdletsToExport = '*' 

@@ -12,6 +12,21 @@
 	#requires the PShellLogging module found on the Powershell Gallery
 #>
 
+#.EXTERNALHELP PSCommonCore.psm1-Help.xml
+function Create-CustomObject
+{
+	param
+	(
+		[Parameter(Mandatory = $true, Position = 0)]
+		[string[]]$Properties
+	)
+	$obj = New-Object System.Management.Automation.PSObject
+	foreach ($p in $Properties)
+	{
+		$obj | Add-Member -MemberType NoteProperty -Name $p -Value $null
+	}
+	return $obj
+}
 
 
 
